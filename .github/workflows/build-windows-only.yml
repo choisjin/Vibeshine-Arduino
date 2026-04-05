@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - vibe
     paths:
       - 'src/**'
       - 'cmake/**'
@@ -30,6 +30,18 @@ jobs:
       - name: Init submodules
         shell: bash
         run: git submodule update --init --recursive
+
+      - name: Create SudoVDA dummy files
+        shell: bash
+        run: |
+          mkdir -p src_assets/windows/drivers/sudovda
+          echo "dummy" > src_assets/windows/drivers/sudovda/install.ps1
+          echo "dummy" > src_assets/windows/drivers/sudovda/uninstall.bat
+          echo "dummy" > src_assets/windows/drivers/sudovda/SudoVDA.inf
+          echo "dummy" > src_assets/windows/drivers/sudovda/SudoVDA.dll
+          echo "dummy" > src_assets/windows/drivers/sudovda/sudovda.cat
+          echo "dummy" > src_assets/windows/drivers/sudovda/sudovda.cer
+          echo "dummy" > src_assets/windows/drivers/sudovda/nefconc.exe
 
       - name: Setup MSYS2
         uses: msys2/setup-msys2@v2
@@ -81,5 +93,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Sunshine-Arduino-Windows
+          name: Vibeshine-Arduino-Windows
           path: build/cpack_artifacts/Sunshine.zip
