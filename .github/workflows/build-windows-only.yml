@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: true
           fetch-depth: 0
@@ -91,7 +91,7 @@ jobs:
           cpack -G ZIP --config ./build/CPackConfig.cmake
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Vibeshine-Arduino-Windows
           path: build/cpack_artifacts/Sunshine.zip
